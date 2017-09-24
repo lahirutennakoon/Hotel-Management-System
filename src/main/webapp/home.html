@@ -1,0 +1,50 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<title>Hotel Management</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- LIBRARIES  --> 
+<script type="text/javascript" src="node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+
+<!-- CONTROLLERS -->
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="js/dailyExpenseController.js"></script>
+
+
+
+
+
+
+</head>
+<body ng-app="app">
+<nav class="navbar navbar-inverse" style="padding:5px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Hotel Management System</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Employee</a></li>
+      <li><a ui-sref="dailyexpense">Accounting</a></li>
+      <li><a href="#">Admin</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> user</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+	<div class="container">
+	
+	<div ui-view></div>
+	</div>
+</body>
+</html>
