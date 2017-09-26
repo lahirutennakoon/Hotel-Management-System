@@ -1,0 +1,55 @@
+<div ng-controller="expenseController as vm" class="col-md-12">
+
+	<div class="col-md-offset-2 col-md-8" style="padding:5%;" >
+		<div style="padding:5px;">
+			<h2>Daily Hotel Expenses</h2>
+		</div>
+			
+				<form name="expenseForm" ng-submit="vm.saveExpense()">
+					<label>Expense Type</label>
+					<input type="text" name="expensesType"	class="form-control" ng-model="vm.expensesType" />
+					<label>Description</label>
+					<input type="text" name="description" class="form-control" ng-model="vm.description" />
+					<label>Amount</label>
+					<input type="text" name="amount" class="form-control" ng-model="vm.amount" />
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+				<!--<p>{{postResultMessage}}</p>-->
+	</div>
+
+			<br>
+
+	<div class="row">
+		<div class="col-lg-offset-2 col-lg-8">
+
+			<div>
+
+					<!-- Display expenses in a table -->
+				<table class="table">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Expense Type</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th style="width: 90px"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="expense in vm.expenses">
+						<td>{{expense.id}}</td>
+						<td>{{expense.expensesType}}</td>
+						<td>{{expense.description}}</td>
+						<td>{{expense.amount}}</td>
+						<td>
+							<button class="btn btn-danger" ng-click="vm.deleteExpense(expense.id)">Delete</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	
+</div>
