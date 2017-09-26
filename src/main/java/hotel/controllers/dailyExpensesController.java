@@ -15,7 +15,6 @@ import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiPathParam;
 import org.jsondoc.core.pojo.ApiStage;
 
-import hotel.message.Response;
 import hotel.models.dailyExpenses;
 import hotel.repositories.dailyExpensesRep;
 
