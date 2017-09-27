@@ -12,11 +12,11 @@
                 url: "/dailyexpense",
                 templateUrl: "/views/account/dailyExpense.html",
                 controller: "expenseController"
-//            }).state("create", {
-//                url: "/create",
-//                templateUrl: "/views/user/create.html",
-//                controller: "userController"
-// 
+            }).state("requestLeaves", {
+                url: "/requestLeaves",
+                templateUrl: "/views/employee/leaveRequestForm.html",
+                controller: "requestLeavesController"
+ 
 
             });
         })
