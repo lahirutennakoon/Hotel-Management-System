@@ -16,7 +16,10 @@
                 url: "/requestLeaves",
                 templateUrl: "/views/employee/leaveRequestForm.html",
                 controller: "requestLeavesController"
- 
+            }).state("payroll", {
+                url: "/payroll",
+                templateUrl: "/views/account/salary.html",
+                controller: "salaryController"
 
             });
         })
