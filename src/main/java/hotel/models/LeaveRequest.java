@@ -28,6 +28,12 @@ public class LeaveRequest implements Serializable
 	@Column(name = "nic")
 	private String nic;
 
+	@Column(name = "starting_date")
+	private String startingDate;
+	
+	@Column(name = "status")
+	private String status;
+	
 	public int getLeaveRequestNo()
 	{
 		return leaveRequestNo;
@@ -66,6 +72,26 @@ public class LeaveRequest implements Serializable
 	public void setNic(String nic)
 	{
 		this.nic = nic;
+	}
+
+	public String getStartingDate()
+	{
+		return startingDate;
+	}
+
+	public void setStartingDate(String startingDate)
+	{
+		this.startingDate = startingDate;
+	}
+
+	public String getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(String status)
+	{
+		this.status = status;
 	}
 	
 	

@@ -13,10 +13,14 @@
                 templateUrl: "/views/account/dailyExpense.html",
                 controller: "expenseController"
             }).state("requestLeaves", {
-                url: "/requestLeaves",
+                url: "/requestLeaves/:nicUrl",
                 templateUrl: "/views/employee/leaveRequestForm.html",
                 controller: "requestLeavesController"
- 
+                
+            }).state("menus", {
+                url: "/menus",
+                templateUrl: "/views/chef/menu.html",
+                controller: "menuController"
 
             });
         })

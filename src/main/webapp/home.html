@@ -21,7 +21,7 @@
 <script type="text/javascript" src="app.js"></script>
 <script type="text/javascript" src="js/dailyExpenseController.js"></script>
 <script type="text/javascript" src="js/requestLeavesController.js"></script>
-
+<script type="text/javascript" src="js/chef/menuController.js"></script>
 
 
 
@@ -37,12 +37,13 @@
       <li class="active"><a href="#">Employee</a></li>
       <li><a ui-sref="dailyexpense">Accounting</a></li>
       <li><a href="#">Admin</a></li>
+      <li><a ui-sref="menus">Food Menus</a> </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
         	<ul class="dropdown-menu">
           		<li><a href="#">View/Edit Profile</a></li>
-          		<li><a ui-sref="requestLeaves">Request Leaves</a></li>
+          		<li><a ui-sref="requestLeaves({nicUrl:'nic8'})">Request Leaves</a></li>
           	</ul>
       	</li>
        
