@@ -3,6 +3,8 @@
     <form class="form-horizontal" name="menuForm" method="post" ng-submit="createMenu()">
 
         <div class="form-group">
+            <input type="hidden" class="form-control" id="foodId" name="foodId" ng-model="foodId">
+
             <label class="control-label col-sm-2" for="mealType">Meal Type:</label>
             <div class="col-sm-10">
                 <select class="form-control" id="mealType" name="mealType" ng-model="mealType">
@@ -49,17 +51,21 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary" ng-hide="hideCreateButton">Create</button>
             </div>
         </div>
     </form>
+
+    &emsp;&emsp;
+    <button class="btn btn-default" ng-click="cancelEdit()" ng-show="showCancelButton">Cancel</button>
+    <button class="btn btn-warning" ng-click="editMenu()" ng-show="showEditButton">Edit</button>
 
     <table class="table table-hover">
         <thead>
         <caption><h2>Menus</h2></caption>
         <tr>
             <th>Meal Type</th>
-            <th>Date (yyyy-mm-dd)</th>
+            <th>Date (mm-dd-yyyy)</th>
             <th>Food Name</th>
             <th>Food Type</th>
             <th>Price</th>
@@ -71,14 +77,13 @@
         <tbody>
         <tr ng-repeat="m in menus">
             <td>{{ m.mealType }}</td>
-            <td>{{ m.date }}</td>
+            <td>{{ m.date | date :  "MM/dd/y" }}</td>
             <td>{{ m.foodName }}</td>
             <td>{{ m.foodType }}</td>
             <td>{{ m.price }} </td>
-            <td><a ng-click="editMenu(m.foodId, m.date, m.foodName,  m.foodType, m.price)" role="button" class="btn btn-warning btn-sm">
-                Edit</a> </td>
-            <td><a ng-click="deleteMenu(m.foodId)" role="button" class="btn btn-danger btn-sm">
-                Delete</a></td>
+            <td><a ng-click="viewEditDetails(m.foodId, m.mealType, m.date, m.foodName, m.foodType, m.price)" role="button"
+                   class="btn btn-warning btn-sm">Edit</a> </td>
+            <td><a ng-click="deleteMenu(m.foodId)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
         </tr>
         </tbody>
     </table>

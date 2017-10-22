@@ -13,5 +13,7 @@ public interface MenuRepository extends JpaRepository<Menu, String>
     List<Menu> findAllByOrderByFoodIdDesc();
 
     @Transactional
-    boolean deleteMenuByFoodId(int foodId);
+    int deleteMenuByFoodId(int foodId);
+
+    Menu findMenuByFoodId(int foodId);
 }

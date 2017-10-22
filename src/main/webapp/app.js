@@ -16,12 +16,10 @@
                 url: "/requestLeaves/:nicUrl",
                 templateUrl: "/views/employee/leaveRequestForm.html",
                 controller: "requestLeavesController"
-                
             }).state("menus", {
                 url: "/menus",
                 templateUrl: "/views/chef/menu.html",
                 controller: "menuController"
-
             });
         })
 //        .constant("globalConfig", {

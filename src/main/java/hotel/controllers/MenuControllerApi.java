@@ -32,4 +32,21 @@ public class MenuControllerApi
         menuRepository.deleteMenuByFoodId(foodId);
         return true;
     }
+
+    @RequestMapping(value = "/editMenu", method = RequestMethod.PUT)
+    public String editMenu(@RequestParam(value="foodId") int foodId, @RequestBody Menu menu)
+    {
+        Menu menuToEdit=menuRepository.findMenuByFoodId(foodId);
+
+        menuToEdit.setFoodName(menu.getFoodName());
+        menuToEdit.setFoodType(menu.getFoodType());
+        menuToEdit.setPrice(menu.getPrice());
+        menuToEdit.setMealType(menu.getMealType());
+        menuToEdit.setDate(menu.getDate());
+
+        menuRepository.save(menuToEdit);
+        return "Menu successfully edited";
+    }
+
+
 }
