@@ -20,6 +20,10 @@
                 url: "/menus",
                 templateUrl: "/views/chef/menu.html",
                 controller: "menuController"
+            }).state("items", {
+                url: "/items",
+                templateUrl: "/views/inventory/item.html",
+                controller: "itemController"
             });
         })
 //        .constant("globalConfig", {
