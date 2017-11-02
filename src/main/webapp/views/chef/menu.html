@@ -41,12 +41,6 @@
         </div>
     </div>
 
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="price">Price:</label>
-            <div class="col-sm-10">
-                <input type="number" step="0.01" class="form-control" id="price" name="price" ng-model="price" required>
-            </div>
-        </div>
 
 
         <div class="form-group">
@@ -68,7 +62,6 @@
             <th>Date (mm-dd-yyyy)</th>
             <th>Food Name</th>
             <th>Food Type</th>
-            <th>Price</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -80,8 +73,7 @@
             <td>{{ m.date | date :  "MM/dd/y" }}</td>
             <td>{{ m.foodName }}</td>
             <td>{{ m.foodType }}</td>
-            <td>{{ m.price }} </td>
-            <td><a ng-click="viewEditDetails(m.foodId, m.mealType, m.date, m.foodName, m.foodType, m.price)" role="button"
+            <td><a ng-click="viewEditDetails(m.foodId, m.mealType, m.date, m.foodName, m.foodType)" role="button"
                    class="btn btn-warning btn-sm">Edit</a> </td>
             <td><a ng-click="deleteMenu(m.foodId)" role="button" class="btn btn-danger btn-sm">Delete</a></td>
         </tr>

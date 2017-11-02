@@ -18,9 +18,6 @@ public class Menu
     @Column(name = "food_type")
     private String foodType;
 
-    @Column(name = "price")
-    private double price;
-
     @Column(name = "meal_type")
     private String mealType;
 
@@ -49,14 +46,6 @@ public class Menu
 
     public void setFoodType(String foodType) {
         this.foodType = foodType;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getMealType() {

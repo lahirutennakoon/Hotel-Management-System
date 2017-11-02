@@ -15,7 +15,6 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
             date: $scope.date,
             foodName:$scope.foodName,
             foodType:$scope.foodType,
-            price: $scope.price
         };
 
 
@@ -31,7 +30,6 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
 
         $scope.date="";
         $scope.foodName="";
-        $scope.price="";
 
     }
 
@@ -62,13 +60,12 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
    }
 
    //populate the form with the details to edit
-   $scope.viewEditDetails=function (foodId, mealType, date, foodName, foodType, price)
+   $scope.viewEditDetails=function (foodId, mealType, date, foodName, foodType)
    {
        $scope.foodId=foodId;
        $scope.mealType=mealType;
        $scope.foodName=foodName;
        $scope.foodType=foodType;
-       $scope.price=price;
 
        //format date
        var dateToSplit=date.split("-");
@@ -99,7 +96,6 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
            date: $scope.date,
            foodName:$scope.foodName,
            foodType:$scope.foodType,
-           price: $scope.price
        };
 
        console.log(data);
@@ -114,7 +110,6 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
 
        $scope.date="";
        $scope.foodName="";
-       $scope.price="";
 
        $scope.hideCreateButton=false;
        $scope.showEditButton=false;
@@ -126,7 +121,6 @@ angular.module('app').controller('menuController', function($scope, $http, $wind
     {
         $scope.date="";
         $scope.foodName="";
-        $scope.price="";
 
         $scope.hideCreateButton=false;
         $scope.showEditButton=false;

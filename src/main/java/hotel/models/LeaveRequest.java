@@ -1,6 +1,6 @@
 package hotel.models;
 
-import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "leaverequest")
-public class LeaveRequest implements Serializable
+@Table(name = "leaves")
+public class LeaveRequest
 {
-	private static final long serialVersionUID = -3009157732242241606L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="leave_request_no")
@@ -29,11 +28,11 @@ public class LeaveRequest implements Serializable
 	private String nic;
 
 	@Column(name = "starting_date")
-	private String startingDate;
+	private Date startingDate;
 	
 	@Column(name = "status")
 	private String status;
-	
+
 	public int getLeaveRequestNo()
 	{
 		return leaveRequestNo;
@@ -74,12 +73,12 @@ public class LeaveRequest implements Serializable
 		this.nic = nic;
 	}
 
-	public String getStartingDate()
+	public Date getStartingDate()
 	{
 		return startingDate;
 	}
 
-	public void setStartingDate(String startingDate)
+	public void setStartingDate(Date startingDate)
 	{
 		this.startingDate = startingDate;
 	}
@@ -93,6 +92,4 @@ public class LeaveRequest implements Serializable
 	{
 		this.status = status;
 	}
-	
-	
 }
