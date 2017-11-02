@@ -3,10 +3,7 @@ package hotel.controllers;
 import hotel.models.Item;
 import hotel.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,27 @@ public class ItemControllerApi
     public List<Item> getItems()
     {
         return itemRepository.findAllByOrderByItemIdDesc();
+    }
+
+    //delete
+    @RequestMapping(value = "deleteItem" , method = RequestMethod.DELETE)
+    boolean deleteItem(@RequestParam(value="itemId") int itemId)
+    {
+        itemRepository.deleteItemByItemId(itemId);
+        return true;
+    }
+
+    @RequestMapping(value = "/editItem", method = RequestMethod.PUT)
+    public String editItem(@RequestParam(value="itemId") int itemId, @RequestBody Item item)
+    {
+        Item itemToEdit=itemRepository.findItemByItemId(itemId);
+
+        itemToEdit.setItemName(item.getItemName());
+        itemToEdit.setQuantity(item.getQuantity());
+        itemToEdit.setUnitCost(item.getUnitCost());
+        itemToEdit.setTotalCost(item.getTotalCost());
+
+        itemRepository.save(itemToEdit);
+        return "item edited";
     }
 }

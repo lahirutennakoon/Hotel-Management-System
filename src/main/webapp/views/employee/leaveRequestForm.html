@@ -38,7 +38,7 @@
                 <th>NIC</th>
                 <th>Reason</th>
                 <th>Number of Days</th>
-                <th>Starting Date(yyyy-mm-dd)</th>
+                <th>Starting Date (mm-dd-yyyy)</th>
                 <th>Status</th>
             </tr>
     	</thead>
@@ -48,7 +48,7 @@
 	    		<td>{{ l.nic }}</td>
 	    		<td>{{ l.reason }}</td>
 	    		<td>{{ l.noOfDays }}</td>
-	    		<td>{{ l.startingDate | limitTo:10 }}</td>
+	    		<td>{{ l.startingDate | date :  "MM/dd/y" }}</td>
 	    		<td>{{ l.status }} </td>
 	 		</tr>
 	 	</tbody>

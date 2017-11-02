@@ -40,7 +40,6 @@ public class MenuControllerApi
 
         menuToEdit.setFoodName(menu.getFoodName());
         menuToEdit.setFoodType(menu.getFoodType());
-        menuToEdit.setPrice(menu.getPrice());
         menuToEdit.setMealType(menu.getMealType());
         menuToEdit.setDate(menu.getDate());
 
