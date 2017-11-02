@@ -13,14 +13,21 @@
                 templateUrl: "/views/account/dailyExpense.html",
                 controller: "expenseController"
             }).state("requestLeaves", {
-                url: "/requestLeaves",
+                url: "/requestLeaves/:nicUrl",
                 templateUrl: "/views/employee/leaveRequestForm.html",
                 controller: "requestLeavesController"
+            }).state("menus", {
+                url: "/menus",
+                templateUrl: "/views/chef/menu.html",
+                controller: "menuController"
+            }).state("items", {
+                url: "/items",
+                templateUrl: "/views/inventory/item.html",
+                controller: "itemController"
             }).state("payroll", {
                 url: "/payroll",
                 templateUrl: "/views/account/salary.html",
                 controller: "salaryController"
-
             });
         })
 //        .constant("globalConfig", {
