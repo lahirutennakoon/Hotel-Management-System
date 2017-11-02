@@ -9,5 +9,5 @@ import hotel.models.dailyExpenses;
 
 public interface dailyExpensesRep extends JpaRepository<dailyExpenses, Long> {
 
-	
+
 }

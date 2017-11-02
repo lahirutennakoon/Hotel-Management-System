@@ -18,12 +18,18 @@ public class dailyExpenses implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "expensesType")
-	private String expensesType;
+	@Column(name = "expenseDate")
+	private String expenseDate;
 
 	@Column(name = "description")
 	private String description;
-	
+
+	@Column(name = "expensesType")
+	private String expensesType;
+
+	@Column(name = "paymentForm")
+	private String paymentForm;
+
 	@Column(name = "amount")
 	private String amount;
 
@@ -38,10 +44,6 @@ public class dailyExpenses implements Serializable {
 	}
 
 
-	public dailyExpenses() {
-	}
-
-	
 	public long getId() {
 		return id;
 	}
@@ -49,6 +51,22 @@ public class dailyExpenses implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getExpenseDate() {
+		return expenseDate;
+	}
+
+	public void setExpenseDate(String expenseDate) {
+		this.expenseDate = expenseDate;
+	}
+
+	public String getPaymentForm() {
+		return paymentForm;
+	}
+
+	public void setPaymentForm(String paymentForm) {
+		this.paymentForm = paymentForm;
 	}
 
 
@@ -71,11 +89,15 @@ public class dailyExpenses implements Serializable {
 		this.description = description;
 	}
 
+	public dailyExpenses(){
 
+	}
 
-	public dailyExpenses(String expensesType ,String  description, String amount) {
-		this.expensesType = expensesType;
+	public dailyExpenses(String expenseDate,String  description, String expensesType ,String paymentForm, String amount) {
+		this.expenseDate = expenseDate;
 		this.description = description;
+		this.expensesType = expensesType;
+		this.paymentForm = paymentForm;
 		this.amount = amount;
 	}
 

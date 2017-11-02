@@ -1,5 +1,7 @@
 package hotel.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -34,6 +36,7 @@ public class Salary implements Serializable {
 	private String empTax;
 
 	@Column(name = "payDate")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private String payDate;
 
 	@Column(name = "grossPay")

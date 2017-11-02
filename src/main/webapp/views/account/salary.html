@@ -1,56 +1,28 @@
-<div ng-controller="salaryController as vm" class="col-md-12">
-
-	<div class="col-md-offset-2 col-md-8" style="padding:5%;" >
-		<div style="padding:5px;">
-			<h2 ng-show="vm.salary.id!=null">Edit Employee Salary Details</h2>
-			<h2  ng-hide="vm.salary.id!=null">Add Employee Salary Details</h2>
-
-		</div>
-				<form name="salaryForm" ng-submit="vm.saveSalary()">
-					<label>Employee NIC</label>
-					<input type="text" name="empID"	class="form-control" ng-model="vm.salary.empID" placeholder="employee ID.."/>
-					<label>Employee Name</label>
-					<input type="text" name="empName" class="form-control" ng-model="vm.salary.empName" placeholder="employee name.."/>
-					<label>Department</label>
-					<select class="form-control" ng-model="vm.salary.empDep">
-						<option>Front Office</option>
-						<option>Housekeeping</option>
-						<option>Food and Beverage</option>
-						<option>Sales and Marketing</option>
-						<option>Maintenance</option>
-					</select>
-					<label>Hours worked</label>
-					<input type="text" name="empHrs" placeholder="hours worked..." class="form-control" ng-model="vm.salary.empHrs" />
-					<label>OverTime</label>
-					<input type="text" name="empOT" placeholder="overtime..." class="form-control" ng-model="vm.salary.empOT" />
-					<label>Hourly Rate</label>
-					<input type="text" name="empHrlyRate" placeholder="hourly rate..." class="form-control" ng-model="vm.salary.empHrlyRate" />
-					<label>Tax</label>
-					<input type="text" name="empTax" placeholder="tax..." class="form-control" ng-model="vm.salary.empTax" />
-					<label>Date</label>
-					<input type="text" name="payDate" placeholder="date..." class="form-control" ng-model="vm.salary.payDate" />
-					<label>Gross Pay</label>
-					<input type="text" name="grossPay" placeholder="gross pay.." class="form-control" ng-model="vm.salary.grossPay" />
-					<label>Net pay</label>
-					<input type="text" name="netPay" placeholder="net pay.." class="form-control" ng-model="vm.salary.netPay" />
-					<div class="form-group">
-					<button type="submit" class="btn btn-primary" ng-hide="vm.salary.id!=null">Save</button>
-						<button type="submit" class="btn btn-primary" ng-show="vm.salary.id!=null">Update</button>
-					</div>
-				</form>
-				<!--<p>{{postResultMessage}}</p>-->
-	</div>
-
-			<br>
+<div ng-controller="salaryController as vm">
 
 	<div class="row">
-		<div class="col-lg-offset-2 col-lg-8">
+		<div class="col-lg-offset-1 col-lg-10">
+			<div style="padding:0 0 15px 0;">
+
+				<h3  ng-hide="vm.id!=null">
+					<span class="text-muted">Salary</span>
+				</h3>
+			</div>
+
+			<form class="navbar-form" role="search" style="padding:0 0 10px 0;">
+				<div class="input-group add-on">
+					<input class="form-control" ng-model="search" placeholder="Search" name="srch-term" id="srch-term" type="text">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form>
 
 			<div>
-					<!-- Display salarys in a table -->
-				<table class="table">
+				<!-- Display salarys in a table -->
+				<table class="table table-condensed table-hover">
 					<thead>
-					<tr>
+					<tr style="background-color: rgba(0,0,0,0.76); color:white;">
 						<th>NIC</th>
 						<th>Employee Name</th>
 						<th>Department</th>
@@ -62,34 +34,139 @@
 						<th>Gross Pay</th>
 						<th>Net pay</th>
 
-						<th style="width: 90px"></th>
+						<th style="width: 5px"></th>
 					</tr>
 					</thead>
 					<tbody>
-					<tr ng-repeat="salary in vm.salarys">
-						<td>{{salary.empID}}</td>
-						<td>{{salary.empName}}</td>
-						<td>{{salary.empDep}}</td>
-						<td>{{salary.empHrs}}</td>
-						<td>{{salary.empOT}}</td>
-						<td>{{salary.empHrlyRate}}</td>
-						<td>{{salary.empTax}}</td>
-						<td>{{salary.payDate}}</td>
-						<td>{{salary.grossPay}}</td>
-						<td>{{salary.netPay}}</td>
+					<tr  ng-repeat="sal in vm.salarys | filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+						<td class="warning">{{sal.empID}}</td>
+						<td class="warning">{{sal.empName}}</td>
+						<td class="warning">{{sal.empDep}}</td>
+						<td class="warning">{{sal.empHrs}}</td>
+						<td class="warning">{{sal.empOT}}</td>
+						<td class="warning">{{sal.empHrlyRate}}</td>
+						<td class="warning">{{sal.empTax}}</td>
+						<td class="warning">{{sal.payDate | date:'yyyy-MM-dd'}}</td>
+						<td class="warning">{{sal.grossPay}}</td>
+						<td class="info">{{sal.netPay}}</td>
 
 						<td>
-							<button class="btn btn-primary" ng-click="vm.editSalary(salary)">Edit</button>
+							<button class="btn btn-default"
+									ng-click="vm.editSalary(sal.id,sal.empID,sal.empName,sal.empDep,sal.empHrs,sal.empOT,sal.empHrlyRate,sal.empTax,sal.payDate,sal.grossPay,sal.netPay)">
+								<i class="glyphicon glyphicon-edit"></i> Edit</button>
 						</td>
 						<td>
-							<button class="btn btn-danger" ng-click="vm.deleteSalary(salary.id)">Delete</button>
+							<button class="btn btn-danger" ng-click="vm.deleteSalary(sal.id)">
+								<i class="glyphicon glyphicon-trash"></i></button>
 						</td>
 					</tr>
 					</tbody>
 				</table>
+				<ul uib-pagination style="float:right"
+					total-items="vm.expenses.length"
+					items-per-page="vm.itemsPerPage"
+					ng-model="vm.currentPage"
+					class="pagination-sm"></ul>
 
 			</div>
 		</div>
 	</div>
+
+	<div class="col-md-offset-1 col-md-8" style="padding:0 0 10px 0;" >
+
+		<form name="salaryForm" ng-submit="vm.saveSalary()">
+
+			<div style="padding:0 0 15px 0;">
+				<h3 ng-show="vm.id!=null">
+					<span class="text-muted">Edit Salary </span>
+				</h3>
+				<h3  ng-hide="vm.id!=null">
+					<span class="text-muted">Add Salary</span>
+				</h3>
+			</div>
+
+			<div class="form-group col-md-4">
+				<div class="form-group">
+					<label>Employee NIC :</label>
+					<input type="text" name="empID" class="form-control" ng-model="vm.empID" placeholder="Employee ID" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					<label>Employee Name :</label>
+					<input type="text" name="empName" class="form-control" ng-model="vm.empName" placeholder="Employee Name" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					<label>Department :</label>
+					<select class="form-control" ng-model="vm.empDep" required>
+						<option value="" selected disabled>Select Department</option>
+						<option>Front Office</option>
+						<option>Housekeeping</option>
+						<option>Food and Beverage</option>
+						<option>Sales and Marketing</option>
+						<option>Maintenance</option>
+						<option>Security</option>
+						<option>Accounting</option>
+						<option>Laundry</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Hours worked :</label>
+					<input type="number" ng-value="vm.empHrs" placeholder="Hours Worked" class="form-control" ng-model="vm.empHrs" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					<label>OverTime</label>
+					<input type="number" ng-value="vm.empOT" placeholder="Overtime" class="form-control" ng-model="vm.empOT" autocomplete="off" required/>
+
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<div class="form-group">
+					<label>Hourly Rate :</label>
+					<input type="number" ng-value="vm.empHrlyRate" placeholder="Hourly Rate" class="form-control" ng-model="vm.empHrlyRate" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					<label>Tax :</label>
+					<input type="number" ng-value="vm.empTax" placeholder="Tax" class="form-control" ng-model="vm.empTax" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					<label>Date :</label>
+
+					<!--<input type="date" name="payDate" value="vm.payDate" class="form-control" ng-model="vm.payDate "/>-->
+					<p class="input-group">
+						<input type="text"
+							   class="form-control"
+							   uib-datepicker-popup
+							   date-type="string"
+							   ng-model="vm.payDate"
+							   is-open="vm.popup2.opened"
+							   datepicker-options="vm.dateOptions"
+							   ng-required="true"
+							   close-text="Close" />
+						<span class="input-group-btn">
+								<button type="button"
+										class="btn btn-default"
+										ng-click="vm.open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+					</p>
+				</div>
+				<div class="form-group">
+					<label>Gross Pay :</label>
+					<input type="number" ng-value="vm.empHrs * vm.empHrlyRate"  placeholder="Gross Pay" class="form-control" ng-model="vm.grossPay" autocomplete="off" disabled/>
+				</div>
+				<div class="form-group">
+					<label>Net pay :</label>
+					<input type="number" ng-value="(vm.empHrs * vm.empHrlyRate)-vm.empTax" placeholder="Net Pay" class="form-control" ng-model="vm.netPay" autocomplete="off" disabled/>
+				</div>
+				<div style="float:right; padding:10px 0 0 0;">
+					<button type="submit" class="btn btn-primary" ng-hide="vm.id!=null">Save</button>
+					<button type="submit" class="btn btn-primary" ng-show="vm.id!=null">Update</button>
+
+				</div>
+			</div>
+		</form>
+		<!--<p>{{postResultMessage}}</p>-->
+	</div>
+
 
 </div>

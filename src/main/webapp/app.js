@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('app', [
-        "ui.router"
+        "ui.router",
+        "ui.bootstrap"
     ])
         .config(function($stateProvider, $urlRouterProvider)
         {
@@ -28,7 +29,31 @@
                 url: "/payroll",
                 templateUrl: "/views/account/salary.html",
                 controller: "salaryController"
+            }).state("rooms", {
+                url: "/rooms",
+                templateUrl: "/views/account/rooms.html",
+                controller: "roomsController"
+
+            }).state("assignEmployees", {
+                url: "/assignEmployees",
+                templateUrl: "/views/account/assignEmployees.html",
+                controller: "roomsController"
+
+            }).state("dashboard", {
+                url: "/dashboard",
+                templateUrl: "/views/account/dashboard.html",
+                controller: "dashController"
+
+            }).state("refund", {
+                url: "/refund",
+                templateUrl: "/views/account/refund.html",
+                controller: "refundController"
+            }).state("income", {
+                url: "/income",
+                templateUrl: "/views/account/dailyIncome.html",
+                controller: "incomeController"
             });
+
         })
 //        .constant("globalConfig", {
 //            apiAddress: 'http://localhost:8080/'

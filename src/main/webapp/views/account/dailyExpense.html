@@ -1,67 +1,189 @@
 <div ng-controller="expenseController as vm" class="col-md-12">
 
-	<div class="col-md-offset-2 col-md-8" style="padding:5%;" >
-		<div style="padding:5px;">
-			<h2 ng-show="vm.expense.id!=null">Edit Daily Hotel Expenses</h2>
-			<h2  ng-hide="vm.expense.id!=null">Add Daily Hotel Expenses</h2>
 
-		</div>
+
+	<div class="col-md-offset-0 col-md-11 "  style="padding:0 0 10px 50px;" >
+
 
 		<form name="expenseForm" ng-submit="vm.saveExpense()">
-			<label>Expense Type</label>
-			<input type="text" name="expensesType"	class="form-control" ng-model="vm.expense.expensesType" />
-			<label>Description</label>
-			<textarea type="text"
-					  class="form-control"
-					  name="description"
-					  ng-model="vm.expense.description"
-					  placeholder="Expense Description"></textarea>
-			<!--<input type="text" name="description" class="form-control" ng-model="vm.description" />-->
-			<label>Amount</label>
-			<input type="text" name="amount" class="form-control" ng-model="vm.expense.amount" />
-			<div class="form-group">
-				<button type="submit" class="btn btn-primary" ng-hide="vm.expense.id!=null">Save</button>
-				<button type="submit" class="btn btn-primary" ng-show="vm.expense.id!=null">Update</button>
+			<div class="form-group col-md-3">
+
+				<h3 class="text-muted" ng-show="vm.id!=null">Edit Expenses</h3>
+				<h3 class="text-muted" ng-hide="vm.id!=null">Add Expenses</h3>
+				<hr>
+
+
+				<div class="form-group">
+					<label>Expense Date</label>
+
+
+					<!--<input type="text"-->
+					<!--class="form-control"-->
+					<!--id="vm.expenseDate"-->
+					<!--name="vm.expenseDate"-->
+					<!--ng-value="vm.expenseDate"-->
+					<!--ng-model="vm.expenseDate" disabled>-->
+					<p class="input-group">
+						<input type="text"
+							   class="form-control"
+							   uib-datepicker-popup
+							   date-type="string"
+							   ng-model="vm.expenseDate"
+							   is-open="vm.popup2.opened"
+							   datepicker-options="vm.dateOptions"
+							   ng-required="true"
+							   close-text="Close" />
+						<span class="input-group-btn">
+								<button type="button"
+										class="btn btn-default"
+										ng-click="vm.open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+					</p>
+
+				</div>
+
+				<div class="form-group">
+					<label>Description</label>
+					<textarea type="text"
+							  class="form-control"
+							  name="description"
+							  ng-model="vm.description"
+							  placeholder="Expense Description" required></textarea>
+
+
+				</div>
+
+				<div class="form-group">
+					<label>Payment Form :</label>
+					<select class="form-control" ng-model="vm.paymentForm" required>
+						<option value="" selected disabled>Select Payment Form</option>
+						<option>Cash</option>
+						<option>Credit</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Expense Type</label>
+					<input type="text" name="expensesType"	class="form-control" ng-model="vm.expensesType" placeholder="Expense Type" required/>
+
+				</div>
+
+				<div class="form-group">
+					<label>Amount</label>
+					<input type="number" name="vm.amount"  class="form-control" ng-model="vm.amount" placeholder="0.00" required/>
+				</div>
+
+				<div class="form-group" style="padding:21px 0 0px 15px;">
+					<button type="submit" class="btn btn-primary" ng-hide="vm.id!=null">Save</button>
+					<button class="btn btn-primary" ng-click="vm.back()"
+							ng-show="vm.id!=null">Back</button>
+					<button type="submit" class="btn btn-primary" ng-show="vm.id!=null">Update</button>
+				</div>
+
+
 			</div>
+
 		</form>
-		<!--<p>{{postResultMessage}}</p>-->
+
+		<div class="form-group col-md-9" style="padding:78px 0 0 19px;">
+
+			<form class="navbar-form" role="search" style="padding:0 0 10px 0;">
+				<div class="input-group add-on">
+					<input class="form-control" ng-model="search" placeholder="Search" name="srch-term" id="srch-term" type="text">
+					<!--<div class="input-group date" data-provide="datepicker">-->
+					<!--<input type="text"-->
+					<!--id="vm.expenseDate"-->
+					<!--name="vm.expenseDate"-->
+					<!--class="form-control"-->
+					<!--data-date-format="mm-dd-yyyy"-->
+					<!--ng-model="vm.expenseDate"/>-->
+					<!--<div class="input-group-addon">-->
+					<!--<span class="glyphicon glyphicon-th"></span>-->
+					<!--</div>-->
+					<!--</div>-->
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form>
+
+			<div>
+
+				<div id="expenseTable" style="background-color: white">
+					<!-- Display expenses in a table -->
+					<table  class="table table-condensed table-hover">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>Date</th>
+							<th>Description</th>
+							<th>Expense Type</th>
+							<th>Payment Form</th>
+							<th>Amount</th>
+							<th style="width: 5px"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr class="warning" ng-repeat="e in vm.expenses |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+							<td>{{e.id}}</td>
+							<td>{{e.expenseDate | date:'yyyy-MM-dd'}}</td>
+							<td>{{e.description}}</td>
+							<td>{{e.expensesType}}</td>
+							<td>{{e.paymentForm}}</td>
+							<td>{{e.amount}}.00</td>
+
+							<td>
+								<button  class="btn btn-default"
+										 ng-click=" vm.editExpense(e.id,e.expenseDate,e.description,e.expensesType,e.paymentForm,e.amount)">
+									<i class="glyphicon glyphicon-edit"></i> Edit</button>
+							</td>
+							<td>
+								<button class="btn btn-default" ng-click="vm.deleteExpense(e.id)"><i class="glyphicon glyphicon-trash"></i></button>
+							</td>
+						</tr>
+						</tbody>
+
+
+					</table>
+
+				</div>
+				<ul uib-pagination style="float:right"
+					total-items="vm.expenses.length"
+					items-per-page="vm.itemsPerPage"
+					ng-model="vm.currentPage"
+					class="pagination-sm"></ul>
+
+				<div class="dropdown">
+					<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						<span class="glyphicon glyphicon-th-list"></span>
+						Export
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a ng-click="vm.exportExcel(vm.expenses)">Excel</a></li>
+						<li><a onClick ="javascript:demoFromHTML();">PDF</a></li>
+					</ul>
+				</div>
+
+
+			</div>
+		</div>
+
+
 	</div>
+
+
+
+
+
+
+
+
+
 
 	<br>
 
-	<div class="row">
-		<div class="col-lg-offset-2 col-lg-8">
-
-			<div>
-				<!-- Display expenses in a table -->
-				<table class="table">
-					<thead>
-					<tr>
-						<th>#</th>
-						<th>Expense Type</th>
-						<th>Description</th>
-						<th>Amount</th>
-						<th style="width: 90px"></th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr ng-repeat="expense in vm.expenses">
-						<td>{{expense.id}}</td>
-						<td>{{expense.expensesType}}</td>
-						<td>{{expense.description}}</td>
-						<td>{{expense.amount}}</td>
-						<td>
-							<button class="btn btn-primary" ng-click="vm.editExpense(expense)">Edit</button>
-						</td>
-						<td>
-							<button class="btn btn-danger" ng-click="vm.deleteExpense(expense.id)">Delete</button>
-						</td>
-					</tr>
-					</tbody>
-				</table>
-
-			</div>
-		</div>
-	</div>
 
 </div>
