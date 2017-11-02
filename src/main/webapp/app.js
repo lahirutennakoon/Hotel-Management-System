@@ -24,6 +24,10 @@
                 url: "/items",
                 templateUrl: "/views/inventory/item.html",
                 controller: "itemController"
+            }).state("payroll", {
+                url: "/payroll",
+                templateUrl: "/views/account/salary.html",
+                controller: "salaryController"
             });
         })
 //        .constant("globalConfig", {

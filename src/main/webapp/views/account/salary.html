@@ -1,0 +1,95 @@
+<div ng-controller="salaryController as vm" class="col-md-12">
+
+	<div class="col-md-offset-2 col-md-8" style="padding:5%;" >
+		<div style="padding:5px;">
+			<h2 ng-show="vm.salary.id!=null">Edit Employee Salary Details</h2>
+			<h2  ng-hide="vm.salary.id!=null">Add Employee Salary Details</h2>
+
+		</div>
+				<form name="salaryForm" ng-submit="vm.saveSalary()">
+					<label>Employee NIC</label>
+					<input type="text" name="empID"	class="form-control" ng-model="vm.salary.empID" placeholder="employee ID.."/>
+					<label>Employee Name</label>
+					<input type="text" name="empName" class="form-control" ng-model="vm.salary.empName" placeholder="employee name.."/>
+					<label>Department</label>
+					<select class="form-control" ng-model="vm.salary.empDep">
+						<option>Front Office</option>
+						<option>Housekeeping</option>
+						<option>Food and Beverage</option>
+						<option>Sales and Marketing</option>
+						<option>Maintenance</option>
+					</select>
+					<label>Hours worked</label>
+					<input type="text" name="empHrs" placeholder="hours worked..." class="form-control" ng-model="vm.salary.empHrs" />
+					<label>OverTime</label>
+					<input type="text" name="empOT" placeholder="overtime..." class="form-control" ng-model="vm.salary.empOT" />
+					<label>Hourly Rate</label>
+					<input type="text" name="empHrlyRate" placeholder="hourly rate..." class="form-control" ng-model="vm.salary.empHrlyRate" />
+					<label>Tax</label>
+					<input type="text" name="empTax" placeholder="tax..." class="form-control" ng-model="vm.salary.empTax" />
+					<label>Date</label>
+					<input type="text" name="payDate" placeholder="date..." class="form-control" ng-model="vm.salary.payDate" />
+					<label>Gross Pay</label>
+					<input type="text" name="grossPay" placeholder="gross pay.." class="form-control" ng-model="vm.salary.grossPay" />
+					<label>Net pay</label>
+					<input type="text" name="netPay" placeholder="net pay.." class="form-control" ng-model="vm.salary.netPay" />
+					<div class="form-group">
+					<button type="submit" class="btn btn-primary" ng-hide="vm.salary.id!=null">Save</button>
+						<button type="submit" class="btn btn-primary" ng-show="vm.salary.id!=null">Update</button>
+					</div>
+				</form>
+				<!--<p>{{postResultMessage}}</p>-->
+	</div>
+
+			<br>
+
+	<div class="row">
+		<div class="col-lg-offset-2 col-lg-8">
+
+			<div>
+					<!-- Display salarys in a table -->
+				<table class="table">
+					<thead>
+					<tr>
+						<th>NIC</th>
+						<th>Employee Name</th>
+						<th>Department</th>
+						<th>Hours worked</th>
+						<th>OverTime</th>
+						<th>Hourly Rate</th>
+						<th>Tax</th>
+						<th>Date</th>
+						<th>Gross Pay</th>
+						<th>Net pay</th>
+
+						<th style="width: 90px"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="salary in vm.salarys">
+						<td>{{salary.empID}}</td>
+						<td>{{salary.empName}}</td>
+						<td>{{salary.empDep}}</td>
+						<td>{{salary.empHrs}}</td>
+						<td>{{salary.empOT}}</td>
+						<td>{{salary.empHrlyRate}}</td>
+						<td>{{salary.empTax}}</td>
+						<td>{{salary.payDate}}</td>
+						<td>{{salary.grossPay}}</td>
+						<td>{{salary.netPay}}</td>
+
+						<td>
+							<button class="btn btn-primary" ng-click="vm.editSalary(salary)">Edit</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" ng-click="vm.deleteSalary(salary.id)">Delete</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+</div>

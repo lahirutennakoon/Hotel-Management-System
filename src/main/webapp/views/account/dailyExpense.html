@@ -2,29 +2,38 @@
 
 	<div class="col-md-offset-2 col-md-8" style="padding:5%;" >
 		<div style="padding:5px;">
-			<h2>Daily Hotel Expenses</h2>
+			<h2 ng-show="vm.expense.id!=null">Edit Daily Hotel Expenses</h2>
+			<h2  ng-hide="vm.expense.id!=null">Add Daily Hotel Expenses</h2>
+
 		</div>
-			
-				<form name="expenseForm" ng-submit="vm.saveExpense()">
-					<label>Expense Type</label>
-					<input type="text" name="expensesType"	class="form-control" ng-model="vm.expensesType" />
-					<label>Description</label>
-					<input type="text" name="description" class="form-control" ng-model="vm.description" />
-					<label>Amount</label>
-					<input type="text" name="amount" class="form-control" ng-model="vm.amount" />
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-				<!--<p>{{postResultMessage}}</p>-->
+
+		<form name="expenseForm" ng-submit="vm.saveExpense()">
+			<label>Expense Type</label>
+			<input type="text" name="expensesType"	class="form-control" ng-model="vm.expense.expensesType" />
+			<label>Description</label>
+			<textarea type="text"
+					  class="form-control"
+					  name="description"
+					  ng-model="vm.expense.description"
+					  placeholder="Expense Description"></textarea>
+			<!--<input type="text" name="description" class="form-control" ng-model="vm.description" />-->
+			<label>Amount</label>
+			<input type="text" name="amount" class="form-control" ng-model="vm.expense.amount" />
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary" ng-hide="vm.expense.id!=null">Save</button>
+				<button type="submit" class="btn btn-primary" ng-show="vm.expense.id!=null">Update</button>
+			</div>
+		</form>
+		<!--<p>{{postResultMessage}}</p>-->
 	</div>
 
-			<br>
+	<br>
 
 	<div class="row">
 		<div class="col-lg-offset-2 col-lg-8">
 
 			<div>
-
-					<!-- Display expenses in a table -->
+				<!-- Display expenses in a table -->
 				<table class="table">
 					<thead>
 					<tr>
@@ -42,6 +51,9 @@
 						<td>{{expense.description}}</td>
 						<td>{{expense.amount}}</td>
 						<td>
+							<button class="btn btn-primary" ng-click="vm.editExpense(expense)">Edit</button>
+						</td>
+						<td>
 							<button class="btn btn-danger" ng-click="vm.deleteExpense(expense.id)">Delete</button>
 						</td>
 					</tr>
@@ -51,5 +63,5 @@
 			</div>
 		</div>
 	</div>
-	
+
 </div>
