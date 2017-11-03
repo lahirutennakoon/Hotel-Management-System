@@ -123,4 +123,13 @@ angular.module('app').controller('itemController', function($scope, $http, $wind
         $scope.showEditButton=false;
         $scope.showCancelButton=false;
     }
+
+    $scope.printDiv=function (printable)
+    {
+        var printContents = document.getElementById(printable).innerHTML;
+        var popupWin = window.open('', '_blank', 'width=300,height=300');
+        popupWin.document.open();
+        popupWin.document.write(printContents);
+        popupWin.document.close();
+    }
 });

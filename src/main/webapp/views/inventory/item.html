@@ -46,6 +46,9 @@
     <button class="btn btn-default" ng-click="cancelEdit()" ng-show="showCancelButton">Cancel</button>
     <button class="btn btn-warning" ng-click="editItem()" ng-show="showEditButton">Edit</button>
 
+    <br>
+
+    <div id="printable">
     <table class="table table-hover">
         <thead>
         <caption><h2>Items</h2></caption>
@@ -71,4 +74,8 @@
         </tr>
         </tbody>
     </table>
+    </div>
+
+    <button ng-click="printDiv('printable')">Print Inventory List</button>
+
 </div>

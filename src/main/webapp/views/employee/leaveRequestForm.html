@@ -2,7 +2,14 @@
 	<h2> Request Leaves </h2>
 	<form class="form-horizontal" name="leaveRequestForm" method="post" ng-submit="createLeaveRequest()">
 
-	  <div class="form-group">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="nic">NIC:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="nic" name="nic" ng-model="nic" required>
+			</div>
+		</div>
+
+		<div class="form-group">
 	    <label class="control-label col-sm-2" for="reason">Reason for Leave:</label>
 	    <div class="col-sm-10">
 	      <textarea class="form-control" id="reason" name="reason" ng-model="reason" required></textarea>

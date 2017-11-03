@@ -42,7 +42,8 @@ public class LeaveRequestControllerApi
 	@RequestMapping(value = "/getLeaveRequestForEmployee", method = RequestMethod.GET)
 	public List<LeaveRequest> findAllForEmployee(@RequestParam(value="nic") String nic)
 	{
-		return leaveRequestRepository.findAllForEmployee(nic);
+		return leaveRequestRepository.findAll();
+		//return leaveRequestRepository.findAllForEmployee(nic);
 	}
 
 }

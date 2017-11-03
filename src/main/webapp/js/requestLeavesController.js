@@ -15,7 +15,7 @@ angular.module('app').controller('requestLeavesController', function($scope, $ht
 		        }
 				
 				var data = {
-						nic: $scope.nicUrl,
+						nic: $scope.nic,
 						reason: $scope.reason,
 						noOfDays:$scope.noOfDays,
 						startingDate:$scope.startingDate,
@@ -33,6 +33,7 @@ angular.module('app').controller('requestLeavesController', function($scope, $ht
 		        	//window.location.reload();
 		        });
 				
+				$scope.nic="";
 				$scope.reason="";
 				$scope.noOfDays="";
 				$scope.startingDate="";
