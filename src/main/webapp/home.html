@@ -49,7 +49,12 @@
     <script type="text/javascript" src="js/account/refundController.js"></script>
     <script type="text/javascript" src="js/account/dailyIncomeController.js"></script>
     <script type="text/javascript" src="js/customerController1.js"></script>
-
+    <!-- IT15021076 -->
+    <script type="text/javascript" src="js/employeeController.js"></script>
+    <script type="text/javascript" src="js/loginController.js"></script>
+    <script type="text/javascript" src="js/eventController.js"></script>
+    <script type="text/javascript" src="js/roomController.js"></script>
+    <!-- IT15021076 -->
 </head>
 <body ng-app="app">
 <nav class="navbar navbar-inverse" style="padding:5px;">
@@ -89,6 +94,26 @@
       <li><a ui-sref="menus">Food Menus</a> </li>
       <li><a ui-sref="items">Inventory</a> </li>
     </ul>
+
+      <!-- IT15021076 -->
+      <li class="dropdown">
+          <a href="" data-toggle="dropdown" class="dropdown-toggle">Manage Events/Rooms<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a ui-sref="event">Event Handle</a> </li>
+              <li><a ui-sref="manageRoom">Room Handle</a> </li>
+          </ul>
+      </li>
+
+      <li class="dropdown">
+          <a href="" data-toggle="dropdown" class="dropdown-toggle">Administrator <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+              <li><a ui-sref="login">Login as different User</a></li>
+              <li><a ui-sref="addEmployee">Manage Employee</a></li>
+              <li><a ui-sref="approveEvent">Approve/Reject Event Requests</a></li>
+              <li><a ui-sref="addRoom">Add/Edit/Remove Rooms</a> </li>
+          </ul>
+      </li>
+      <!-- IT15021076 -->
     <ul class="nav navbar-nav navbar-right">
     	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
         	<ul class="dropdown-menu">

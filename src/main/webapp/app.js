@@ -52,7 +52,41 @@
                 url: "/income",
                 templateUrl: "/views/account/dailyIncome.html",
                 controller: "incomeController"
-            }).state("customer", {
+            })
+            //IT15021076
+                .state("addEmployee", {
+                    url: "/addEmployee",
+                    templateUrl: "/views/admin/addEmployee.html",
+                    controller: "employeeController"
+                }).state("login",{
+                url:"/login",
+                templateUrl:"/views/admin/login.html",
+                controller:"loginController"
+            }).state("event", {
+                url: "/event",
+                templateUrl: "/views/admin/addEvent.html",
+                controller: "eventController"
+            }).state("approveEvent", {
+                url: "/approveEvent",
+                templateUrl: "/views/admin/approveEvent.html",
+                controller: "eventController"
+            }).state("addRoom", {
+                url: "/addRoom",
+                templateUrl: "/views/admin/addRoom.html",
+                controller: "roomController"
+            }).state("manageRoom", {
+                url: "/manageRoom",
+                templateUrl: "/views/admin/manageRoom.html",
+                controller: "roomController"
+            })
+            //IT15021076
+
+
+
+
+
+
+                .state("customer", {
                 url: "/customer",
                 templateUrl: "/views/customer/customer.html",
                 controller: "customerController1"
