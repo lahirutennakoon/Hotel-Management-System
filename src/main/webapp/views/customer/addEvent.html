@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Event</title>
+</head>
+<body>
+
+<form name="addEventForm" ng-submit="addEvent()">
+    <label>Customer Name</label>
+    <input type="text" name="customerName class="form-control" ng-model="customerName" />
+
+    <label>Event Type</label>
+    <input type="text" name="eventType"	class="form-control" ng-model="eventType" />
+
+    <label>Date</label>
+    <input type="text" name="date"	class="form-control" ng-model="date" />
+
+    <label>Expected Number of guests</label>
+    <input type="text" name="expectedGuestsNumber"	class="form-control" ng-model="expectedGuestsNumber" />
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+</form>
+
+</body>
+</html>

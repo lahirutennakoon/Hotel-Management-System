@@ -1,0 +1,122 @@
+<div ng-controller="roomsController as vm">
+
+	<div class="col-md-offset-3 col-md-8" style="padding:0 0 10px 0;" >
+
+		<form name="roomForm" ng-submit="vm.saveRoom()">
+
+			<div style="padding:0 0 15px 0;">
+						<h3 ng-show="vm.room.id!=null">
+							<span>Edit Room Details</span>
+						</h3>
+						<h3  ng-hide="vm.room.id!=null">
+							<span>Add Room Details</span>
+						</h3>
+			</div>
+
+			<div class="form-group col-md-4">
+				<div class="form-group">
+					  <label>Room No :</label>
+					  <input type="text" name="roomNo" class="form-control" ng-model="vm.room.roomNo" placeholder="Room No" autocomplete="off" required/>
+				</div>
+				<div class="form-group">
+					   <label>Room Type :</label>
+				      <select class="form-control" ng-model="vm.room.roomType" required>
+					    <option value="" selected disabled>Select Room Type</option>
+					    <option>Single</option>
+					    <option>Double</option>
+					    <option>Triple</option>
+						  <option>King Size</option>
+						  <option>Double-double</option>
+				      </select>
+				</div>
+				<div class="form-group">
+					  <label>Room Status :</label>
+					  <select class="form-control" ng-model="vm.room.roomStatus" required>
+						<option value="" selected disabled>Select Status</option>
+						<option>Available</option>
+						<option>Occupied</option>
+						  <option>Inspect</option>
+						  <option>Clean</option>
+						  <option>Maintenance</option>
+					  </select>
+				</div>
+				<div class="form-group">
+					  <label>Room Rate :</label>
+					  <input type="number" ng-value="vm.room.roomRate" placeholder="Room Rate" class="form-control" ng-model="vm.room.roomRate" autocomplete="off" required/>
+
+				</div>
+			 </div>
+				<div class="form-group col-md-4">
+					<div class="form-group">
+				      <label>No of Persons :</label>
+				      <input type="number" ng-value="vm.room.noOfPerson" placeholder="No of Person" class="form-control" ng-model="vm.room.noOfPerson" autocomplete="off" required/>
+					</div>
+					<div class="form-group">
+				      <label>Adult Rate :</label>
+					  <input type="number" ng-value="vm.room.adultRate" placeholder="Adult Rate" class="form-control" ng-model="vm.room.adultRate" autocomplete="off" required/>
+					</div>
+						<div class="form-group">
+					  <label>Children's Rate :</label>
+					  <input type="number" ng-value="vm.room.childRate" placeholder="Children's Rate" class="form-control" ng-model="vm.room.childRate" autocomplete="off" required/>
+						</div>
+				<div style="float:right; padding:50px 0 0 0;">
+					    <button type="submit" class="btn btn-primary" ng-hide="vm.room.id!=null">Save</button>
+						<button type="submit" class="btn btn-primary" ng-show="vm.room.id!=null">Update</button>
+
+				</div>
+			</div>
+
+		</form>
+				<!--<p>{{postResultMessage}}</p>-->
+	</div>
+
+			<br>
+
+	<div class="row">
+		<div class="col-lg-offset-2 col-lg-8">
+
+			<div>
+					<!-- Display rooms in a table -->
+				<table class="table">
+					<thead>
+					<tr>
+						<th>Room No.</th>
+						<th>Room Type</th>
+						<th>Room Status</th>
+						<th>Room Rate</th>
+						<th>No of Persons</th>
+						<th>Adult Rate</th>
+						<th>Child Rate</th>
+
+						<th style="width: 5px"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="room in vm.rooms |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+						<td>{{room.roomNo}}</td>
+						<td>{{room.roomType}}</td>
+						<td>{{room.roomStatus}}</td>
+						<td>{{room.roomRate}}</td>
+						<td>{{room.noOfPerson}}</td>
+						<td>{{room.adultRate}}</td>
+						<td>{{room.childRate}}</td>
+						<td>
+							<button class="btn btn-primary" ng-click="vm.editRoom(room)">Edit</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" ng-click="vm.deleteRoom(room.id)">Delete</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<ul uib-pagination style="float:right"
+					total-items="vm.rooms.length"
+					items-per-page="vm.itemsPerPage"
+					ng-model="vm.currentPage"
+					class="pagination-sm"></ul>
+
+			</div>
+		</div>
+	</div>
+
+</div>

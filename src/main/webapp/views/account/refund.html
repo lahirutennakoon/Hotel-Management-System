@@ -1,0 +1,188 @@
+<div ng-controller="refundController as vm" class="col-md-12">
+
+
+
+	<div class="col-md-offset-0 col-md-11"  style="padding:0 0 10px 50px;" >
+
+
+		<form name="refundForm" ng-submit="vm.saveRefund()">
+			<div class="form-group col-md-3">
+
+					<h3 ng-show="vm.id!=null">Edit refund</h3>
+					<h3  ng-hide="vm.id!=null">Add refund</h3>
+					<hr>
+
+
+				<div class="form-group">
+					<label>Guest No.</label>
+					<input type="text"
+						   name="guestNo"
+						   class="form-control"
+						   ng-model="vm.guestNo"
+						   placeholder="Guest No" required/>
+				</div>
+
+				<div class="form-group">
+					<label>Guest Name</label>
+					<input type="text"
+							  class="form-control"
+							  name="guestName"
+							  ng-model="vm.guestName"
+							  placeholder="Guest Name" required/>
+
+
+				</div>
+
+				<div class="form-group">
+					<label>Refund Date</label>
+					<!--<input type="date" name="refundDate"-->
+						   <!--class="form-control"-->
+						   <!--ng-model="vm.refundDate"-->
+						   <!--placeholder="Refund Date" required/>-->
+					<p class="input-group">
+						<input type="text"
+							   class="form-control"
+							   uib-datepicker-popup
+							   date-type="string"
+							   ng-model="vm.refundDate"
+							   is-open="vm.popup2.opened"
+							   datepicker-options="vm.dateOptions"
+							   ng-required="true"
+							   close-text="Close" />
+						<span class="input-group-btn">
+								<button type="button"
+										class="btn btn-default"
+										ng-click="vm.open2()">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+					</p>
+
+				</div>
+
+				<div class="form-group">
+					<label>Payment Type :</label>
+					<select class="form-control" ng-model="vm.paymentType" required>
+						<option value="" selected disabled>Select Payment Type</option>
+						<option>Cash</option>
+						<option>Credit</option>
+					</select>
+				</div>
+
+
+
+				<div class="form-group">
+					<label>Refund Amount</label>
+					<input type="number" name="vm.refundAmount"
+						   class="form-control"
+						   ng-model="vm.refundAmount" placeholder="0.00" required/>
+				</div>
+
+				<div class="form-group" style="padding:21px 0 0px 15px;">
+					<button type="submit" class="btn btn-primary" ng-hide="vm.id!=null">Save</button>
+					<button class="btn btn-primary" ng-click="vm.back()"
+							ng-show="vm.id!=null">Back</button>
+					<button type="submit" class="btn btn-primary" ng-show="vm.id!=null">Update</button>
+				</div>
+
+
+			</div>
+
+		</form>
+
+		<div class="form-group col-md-9" style="padding:78px 0 0 19px;">
+
+			<form class="navbar-form" role="search" style="padding:0 0 10px 0;">
+				<div class="input-group add-on">
+					<input class="form-control" ng-model="search" placeholder="Search" name="srch-term" id="srch-term" type="text">
+					<!--<div class="input-group date" data-provide="datepicker">-->
+					<!--<input type="text"-->
+					<!--id="vm.refundDate"-->
+					<!--name="vm.refundDate"-->
+					<!--class="form-control"-->
+					<!--data-date-format="mm-dd-yyyy"-->
+					<!--ng-model="vm.refundDate"/>-->
+					<!--<div class="input-group-addon">-->
+					<!--<span class="glyphicon glyphicon-th"></span>-->
+					<!--</div>-->
+					<!--</div>-->
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form>
+
+			<div>
+
+				<div id="refundTable" style="background-color: white">
+				<!-- Display refunds in a table -->
+				<table  class="table table-condensed table-hover">
+					<thead>
+					<tr>
+						<th>Guest No.</th>
+						<th>Guest Name</th>
+						<th>Refund Date</th>
+						<th>Payment Type</th>
+						<th>Amount</th>
+						<th style="width: 5px"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="r in vm.refunds |  filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+						<td>{{r.guestNo}}</td>
+						<td>{{r.guestName}}</td>
+						<td>{{r.refundDate}}</td>
+						<td>{{r.paymentType}}</td>
+						<td>-{{r.refundAmount}}.00</td>
+
+						<td>
+							<button class="btn btn-primary" ng-click=" vm.editRefund(r.id,r.guestNo,r.guestName,r.refundDate,r.paymentType,r.refundAmount)">Edit</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" ng-click="vm.deleteRefund(r.id)">Delete</button>
+						</td>
+					</tr>
+					</tbody>
+
+
+				</table>
+
+				</div>
+				<ul uib-pagination style="float:right"
+					total-items="vm.refunds.length"
+					items-per-page="vm.itemsPerPage"
+					ng-model="vm.currentPage"
+					class="pagination-sm"></ul>
+
+				<!--<div class="dropdown">-->
+					<!--<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+						<!--<span class="glyphicon glyphicon-th-list"></span>-->
+						<!--Export-->
+						<!--<span class="caret"></span>-->
+					<!--</button>-->
+					<!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+						<!--<li><a ng-click="vm.exportExcel(vm.refunds)">Excel</a></li>-->
+						<!--<li><a onClick ="javascript:demoFromHTML();">PDF</a></li>-->
+					<!--</ul>-->
+				<!--</div>-->
+
+
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<br>
+
+
+</div>

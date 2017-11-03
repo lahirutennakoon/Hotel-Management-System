@@ -1,0 +1,72 @@
+<div ng-controller="dashController as vm">
+
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-md-4">
+
+            <div style="padding:0 0 5px 0;">
+            <h3>Hotel Status</h3>
+            </div>
+
+            <div>
+                <!-- Display rooms in a table -->
+                <table class="table table-condensed table-hover" style="text-align: center;">
+
+                    <tr>
+                        <th style="text-align:center" >Room Details</th>
+                        <th  style="text-align:center" >Total Count</th>
+                    </tr>
+
+                    <tbody>
+                    <tr ng-click="vm.getAll(vm.total)">
+                        <td class="warning"  >{{vm.total}} </td>
+                        <td class="info" >{{vm.rooms.length }}</td>
+                    </tr>
+                    <tr ng-click="vm.getAll(vm.av)">
+                        <td class="warning">{{vm.av}}</td>
+                        <td class="info" >{{vm.available }}</td>
+                    </tr>
+                    <tr ng-click="vm.getAll(vm.occ)">
+                        <td class="warning">{{vm.occ}}</td>
+                        <td class="info" >{{vm.occupied}}</td>
+                    </tr>
+                    <tr ng-click="vm.getAll(vm.cl)">
+                        <td class="warning">{{vm.cl}}</td>
+                        <td class="info" >{{vm.clean}}</td>
+                    </tr>
+                    <tr ng-click="vm.getAll(vm.ins)">
+                        <td class="warning">{{vm.ins}}</td>
+                        <td class="info" >{{vm.inspect}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <table class="table" style="text-align: center;">
+
+                <tr>
+                    <th style="text-align:center" >Room No.</th>
+                </tr>
+
+                <tbody>
+                <tr ng-repeat="all in vm.roomNumbers">
+                    <td class="info">{{all.roomNo}}</td>
+                </tr>
+                <tr>
+                    <td>
+                <div class="alert alert-danger" ng-if="vm.roomNumbers.length == 0" role="alert">
+                    No Rooms Found!
+                </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

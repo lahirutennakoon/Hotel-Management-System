@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make Reservation</title>
+</head>
+<body>
+
+<form name="addReservationForm" ng-submit="addReservation()">
+    <label>Customer Name</label>
+    <input type="text" name="customerName" class="form-control" ng-model="customerName" />
+
+    <label>Venue</label>
+    <input type="text" name="venue"	class="form-control" ng-model="venue" />
+
+    <label>Date</label>
+    <input type="text" name="date"	class="form-control" ng-model="date" />
+
+    <label>Time</label>
+    <input type="text" name="time"	class="form-control" ng-model="time" />
+
+    <label>Nuomber of People</label>
+    <input type="text" name="numberOfPeople"	class="form-control" ng-model="numberOfPeople" />
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+</form>
+
+</body>
+</html>

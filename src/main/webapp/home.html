@@ -48,8 +48,7 @@
     <script type="text/javascript" src="js/account/dashController.js"></script>
     <script type="text/javascript" src="js/account/refundController.js"></script>
     <script type="text/javascript" src="js/account/dailyIncomeController.js"></script>
-
-
+    <script type="text/javascript" src="js/customerController1.js"></script>
 
 </head>
 <body ng-app="app">
@@ -60,6 +59,14 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Employee</a></li>
+
+        <li class="dropdown">
+            <a href="" data-toggle="dropdown" class="dropdown-toggle">Customer <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a ui-sref="customer">Add Customer</a></li>
+                <li><a ui-sref="">Add Complaints</a></li>
+            </ul>
+        </li>
         <li class="dropdown">
             <a href="" data-toggle="dropdown" class="dropdown-toggle">Accounting <b class="caret"></b></a>
             <ul class="dropdown-menu">

@@ -1,0 +1,133 @@
+<div ng-controller="roomsController as vm">
+
+	<div class="col-md-offset-1 col-md-8" style="padding:0 0 10px 0;" >
+		<div style="padding:0 0 10px 0;">
+			<h3>Assign Employees</h3>
+		</div>
+
+
+		<div class="row">
+			<div class="col-lg-offset-0 col-lg-14">
+
+				<form class="navbar-form" role="search" style="padding:0 0 10px 0;">
+					<div class="input-group add-on">
+						<input class="form-control" ng-model="search" placeholder="Search" name="srch-term" id="srch-term" type="text">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						</div>
+					</div>
+				</form>
+				<div>
+					<!-- Display rooms in a table -->
+					<table class="table table-condensed table-hover">
+						<thead>
+						<tr style="background-color: rgba(0,0,0,0.76); color:white;">
+							<th>Room No.</th>
+							<th>Room Type</th>
+							<th >Room Status</th>
+							<th>Remarks</th>
+							<th>Assigned Employees</th>
+
+							<th style="width: 0px"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="room in vm.rooms | filter: search | limitTo:vm.itemsPerPage:((vm.currentPage -1) * vm.itemsPerPage)">
+							<td>{{room.roomNo}}</td>
+							<td>{{room.roomType}}</td>
+							<td class="info">{{room.roomStatus}}</td>
+							<td>{{room.remarks}}</td>
+							<td>{{room.assigned}}</td>
+
+							<td>
+								<button class="btn btn-primary" ng-click="vm.editRoom(room)">Assign</button>
+							</td>
+							<!--<td>-->
+							<!--<button class="btn btn-danger" ng-click="vm.deleteRoom(room.id)">Delete</button>-->
+							<!--</td>-->
+						</tr>
+						</tbody>
+					</table>
+					<ul uib-pagination style="float:right"
+						total-items="vm.rooms.length"
+						items-per-page="vm.itemsPerPage"
+						ng-model="vm.currentPage"
+						class="pagination-sm"></ul>
+
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<form name="roomForm" ng-submit="vm.saveRoom()">
+
+			<div style="padding:0 0 15px 0;">
+				<h3 ng-show="vm.room.id!=null">
+					<span>Assign Employees</span>
+				</h3>
+			</div>
+
+			<div class="form-group col-md-4">
+				<div class="form-group">
+					<label>Room No :</label>
+					<input type="text" name="roomNo" class="form-control" ng-model="vm.room.roomNo" placeholder="Employee ID" autocomplete="off" disabled/>
+				</div>
+				<div class="form-group">
+					<label>Room Type :</label>
+					<input type="text" name="roomType" class="form-control" ng-model="vm.room.roomType" placeholder="Room Type" autocomplete="off" disabled/>
+					<!--<select class="form-control" ng-model="vm.room.roomType" >-->
+					<!--<option value="" selected disabled>Select Room Type</option>-->
+					<!--<option>Single</option>-->
+					<!--<option>Double</option>-->
+					<!--<option>Triple</option>-->
+					<!--<option>King Size</option>-->
+					<!--<option>Double-double</option>-->
+					<!--</select>-->
+				</div>
+				<div class="form-group">
+					<label>Room Status :</label>
+					<select class="form-control" ng-model="vm.room.roomStatus" >
+						<option value="" selected disabled>Select Status</option>
+						<option>Available</option>
+						<option>Occupied</option>
+						<option>Inspect</option>
+						<option>Clean</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<div class="form-group">
+					<label>Remarks:</label>
+					<textarea type="text"
+							  class="form-control"
+							  name="remarks"
+							  ng-model="vm.room.remarks"
+							  placeholder="Remarks" autocomplete="off"></textarea>
+
+				</div>
+
+
+				<div class="form-group">
+					<label>Assign Employees :</label>
+					<input type="text" placeholder="Assign Employees" class="form-control" ng-model="vm.room.assigned" autocomplete="off" required/>
+				</div>
+
+
+				<div style="float:right; padding:10px 0 0 0;">
+
+					<button type="submit" class="btn btn-primary" >Assign Employee</button>
+
+				</div>
+			</div>
+
+
+		</form>
+		<!--<p>{{postResultMessage}}</p>-->
+	</div>
+
+
+
+
+
+</div>

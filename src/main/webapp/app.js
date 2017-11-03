@@ -52,6 +52,12 @@
                 url: "/income",
                 templateUrl: "/views/account/dailyIncome.html",
                 controller: "incomeController"
+            }).state("customer", {
+                url: "/customer",
+                templateUrl: "/views/customer/customer.html",
+                controller: "customerController1"
+
+
             });
 
         })
